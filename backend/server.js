@@ -151,7 +151,8 @@ function ourCleanup(req, res, next) {
 }
 
 async function start() {
-  const client = new MongoClient("") // Insert link to your own Mongo Client.
+  const mongodburi = "mongodb+srv://ayushigautam475:I2FS2O2WEaynlND2@cluster0.fcjde0i.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+  const client = new MongoClient(mongodburi) // Insert link to your own Mongo Client.
   await client.connect()
   db = client.db()
   app.listen(3000)
