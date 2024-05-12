@@ -12,7 +12,8 @@ let db;
 
 const path = require("path")
 const React = require("react")
-const ReactDOMServer = require("react-dom/server")
+const ReactDOMServer = require("react-dom/server");
+const {METHODS}=require("http");
 const StudentCard = require("../frontend/src/components/StudentCard").default
 
 // when the app first launches, make sure the public/uploaded-photos folder exists
@@ -22,7 +23,13 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "../frontend/views");
 app.use(express.static("../frontend/public"))
-
+app.use(cors(
+  {
+    origin:["*"],
+    methods:["POST","GET"],
+    credential:true
+  }
+))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 
